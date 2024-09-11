@@ -29,7 +29,9 @@ struct ListView: View {
                     
                     
                     VStack(spacing: 20) {
-                      
+                        CardItem()
+                        CardItem()
+                        CardItem()
                     }
                 }
                 .padding(.horizontal, 15)
@@ -50,6 +52,37 @@ struct ListView: View {
             }
             .offset(x: -20, y: -30)
         }
+    }
+}
+
+struct CardItem: View {
+    
+    var body: some View {
+        ZStack(alignment: .trailing) {
+            VStack(alignment: .leading, spacing: 10) {
+                VStack(alignment: .leading, spacing: 0) {
+                    Text("TR")
+                        .font(.system(size: 12, weight: .black))
+                        .padding(.bottom, 5)
+                    Text("Car")
+                        .font(.system(size: 18, weight: .black))
+                        .padding(.bottom, 4)
+                    Text("Машина")
+                        .font(.system(size: 18, weight: .light))
+                }
+                Divider()
+                VStack(alignment: .leading) {
+                    Text("Примечание")
+                        .font(.system(size: 12, weight: .black))
+                        .foregroundStyle(Color(.systemGray))
+                    Text("аова алвао давыа ов давыолаовы")
+                }
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(20)
+        .background(Color(.systemGray5))
+        .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 }
 
