@@ -18,8 +18,7 @@ struct TabBarView: View {
                         Text("List")
                     }
                 }
-            
-            Text("Words")
+            RandomWordView()
                 .tag(2)
                 .tabItem {
                     VStack {
