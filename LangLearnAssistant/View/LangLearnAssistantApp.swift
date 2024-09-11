@@ -12,6 +12,7 @@ struct LangLearnAssistantApp: App {
     var body: some Scene {
         WindowGroup {
             TabBarView()
+                .preferredColorScheme(.light)
         }
     }
 }

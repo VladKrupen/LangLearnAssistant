@@ -8,36 +8,54 @@
 import SwiftUI
 
 struct TabBarView: View {
+    
+    @ObservedObject var listViewModel = ListViewModel()
+    
+    init() {
+        UITabBar.appearance().shadowImage = UIImage()
+        UITabBar.appearance().backgroundImage = UIImage()
+        UITabBar.appearance().backgroundColor = UIColor.white
+    }
+
+    
     var body: some View {
-        TabView {
-            ListView()
-                .tag(1)
-                .tabItem {
-                    VStack {
-                        Image(systemName: "list.dash")
-                        Text("List")
+        ZStack {
+            TabView {
+                ListView()
+                    .environmentObject(listViewModel)
+                    .tag(1)
+                    .tabItem {
+                        VStack {
+                            Image(systemName: "list.dash")
+                            Text("List")
+                        }
                     }
-                }
-            RandomWordView()
-                .tag(2)
-                .tabItem {
-                    VStack {
-                        Image(systemName: "textformat.abc")
-                        Text("Words")
+                RandomWordView()
+                    .tag(2)
+                    .tabItem {
+                        VStack {
+                            Image(systemName: "textformat.abc")
+                            Text("Words")
+                        }
                     }
-                }
-            LinksView()
-                .tag(3)
-                .tabItem {
-                    VStack {
-                        Image(systemName: "link")
-                        Text("Links")
+                LinksView()
+                    .tag(3)
+                    .tabItem {
+                        VStack {
+                            Image(systemName: "link")
+                            Text("Links")
+                        }
                     }
-                }
+            }
+            
+            if listViewModel.isShowAddView {
+                AddNewWordView()
+                    .environmentObject(listViewModel)
+            }
         }
     }
 }
     
-    #Preview {
-        TabBarView()
-    }
+#Preview {
+    TabBarView()
+}
