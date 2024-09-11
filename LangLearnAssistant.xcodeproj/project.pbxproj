@@ -13,6 +13,7 @@
 		01A303A92C91E2F400FF402C /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A303A82C91E2F400FF402C /* TabBarView.swift */; };
 		01A303AC2C91E4DF00FF402C /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A303AB2C91E4DF00FF402C /* ListView.swift */; };
 		01A303B22C91F59700FF402C /* RandomWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A303B12C91F59700FF402C /* RandomWordView.swift */; };
+		01A303B42C91F97E00FF402C /* LinksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A303B32C91F97E00FF402C /* LinksView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		01A303A82C91E2F400FF402C /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		01A303AB2C91E4DF00FF402C /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		01A303B12C91F59700FF402C /* RandomWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomWordView.swift; sourceTree = "<group>"; };
+		01A303B32C91F97E00FF402C /* LinksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinksView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 				01A303A82C91E2F400FF402C /* TabBarView.swift */,
 				01A303AB2C91E4DF00FF402C /* ListView.swift */,
 				01A303B12C91F59700FF402C /* RandomWordView.swift */,
+				01A303B32C91F97E00FF402C /* LinksView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -153,6 +156,7 @@
 			files = (
 				01A303A92C91E2F400FF402C /* TabBarView.swift in Sources */,
 				01A3039B2C91E21600FF402C /* LangLearnAssistantApp.swift in Sources */,
+				01A303B42C91F97E00FF402C /* LinksView.swift in Sources */,
 				01A303AC2C91E4DF00FF402C /* ListView.swift in Sources */,
 				01A303B22C91F59700FF402C /* RandomWordView.swift in Sources */,
 			);

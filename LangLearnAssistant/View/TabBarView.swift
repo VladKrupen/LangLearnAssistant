@@ -26,7 +26,7 @@ struct TabBarView: View {
                         Text("Words")
                     }
                 }
-            Text("Links")
+            LinksView()
                 .tag(3)
                 .tabItem {
                     VStack {
