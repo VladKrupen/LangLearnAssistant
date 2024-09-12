@@ -9,9 +9,10 @@ import SwiftUI
 
 struct LinkShowView: View {
     
-    @State var url = "https://lingust.ru/english/english-lessons"
+    @Binding var url: String
     @State var isLoaded: Bool = false
     @State var title: String = ""
+    @EnvironmentObject var linkViewModel: LinkViewModel
     
     var body: some View {
         ZStack {
@@ -26,7 +27,7 @@ struct LinkShowView: View {
                         .fontWeight(.bold)
                     Spacer()
                     Button {
-                        
+                        linkViewModel.isShowLinkContent.toggle()
                     } label: {
                         Image(systemName: "xmark")
                             .foregroundStyle(Color(.black))
@@ -49,8 +50,3 @@ struct LinkShowView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
-
-#Preview {
-    LinkShowView()
-}
-

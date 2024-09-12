@@ -60,6 +60,10 @@ struct TabBarView: View {
                 AddNewLinkView()
                     .environmentObject(linkViewModel)
             }
+            if linkViewModel.isShowLinkContent {
+                LinkShowView(url: $linkViewModel.openUrl)
+                    .environmentObject(linkViewModel)
+            }
         }
     }
 }

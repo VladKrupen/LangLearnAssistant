@@ -6,25 +6,27 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct LinksView: View {
     
     @EnvironmentObject var linkViewModel: LinkViewModel
+    @ObservedResults(LinkItem.self) var linkItems
     
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .trailing, vertical: .bottom)) {
             ScrollView {
                 VStack(spacing: 10) {
-                   LinkItem(text: "Урок по грамматике языка")
-                   LinkItem(text: "Урок 3. Личные местоимения. Аффиксы сказуемости")
-                   LinkItem(text: "Урок по грамматике языка")
+                    ForEach(linkItems, id:\.id) { linkItem in
+                        CardLink(linkItem: linkItem) {
+                            $linkItems.remove(linkItem)
+                        }
+                    }
                 }
             }
             
             Button {
-                withAnimation {
-                    linkViewModel.isShowAddLink.toggle()
-                }
+                linkViewModel.isShowAddLink.toggle()
             } label: {
                 ZStack {
                     Circle()
@@ -42,19 +44,22 @@ struct LinksView: View {
     }
 }
 
-struct LinkItem: View {
-    var text: String
+struct CardLink: View {
+    
+    @EnvironmentObject var linkViewModel: LinkViewModel
+    var linkItem: LinkItem
+    var onDelete: () -> ()
     
     var body: some View {
         HStack() {
             HStack(spacing: 15) {
                 Image(systemName: "link")
-                Text(text)
+                Text(linkItem.linkName)
                     .font(.system(size: 14))
             }
             Spacer()
             Button {
-                
+                onDelete()
             } label: {
                 Image(systemName: "xmark")
                     .foregroundStyle(Color(.black))
@@ -65,7 +70,8 @@ struct LinkItem: View {
         .background(Color(.systemGray5))
         .clipShape(RoundedRectangle(cornerRadius: 10))
         .onTapGesture {
-            
+            linkViewModel.isShowLinkContent.toggle()
+            linkViewModel.openUrl = linkItem.link
         }
     }
 }

@@ -6,25 +6,26 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct AddNewLinkView: View {
     
-    @State var linkTitle = ""
-    @State var link = ""
+    @State var linkTitle: String = ""
+    @State var link: String = ""
+    @State var showAlert: Bool = false
     @EnvironmentObject var linkViewModel: LinkViewModel
+    @ObservedResults(LinkItem.self) var linkItems
     
     var body: some View {
         VStack {
             HStack {
                 Spacer()
-                Text("New link")
+                Text("New word")
                     .font(.system(size: 20, weight: .black))
                     .padding(.leading, 16)
                 Spacer()
                 Button {
-                    withAnimation {
-                        linkViewModel.isShowAddLink.toggle()
-                    }
+                    linkViewModel.isShowAddLink.toggle()
                 } label: {
                     Image(systemName: "xmark")
                         .resizable()
@@ -55,7 +56,17 @@ struct AddNewLinkView: View {
             
             Spacer()
             Button {
-                
+                if linkTitle.isEmpty, link.isEmpty {
+                    showAlert.toggle()
+                } else {
+                    let newLink = LinkItem()
+                    newLink.linkName = linkTitle
+                    newLink.link = link
+                    $linkItems.append(newLink)
+                    withAnimation {
+                        linkViewModel.isShowAddLink.toggle()
+                    }
+                }
             } label: {
                 Text("Save")
                     .padding(.vertical, 13)
@@ -63,6 +74,9 @@ struct AddNewLinkView: View {
                     .background(Color(red: 0.314, green: 0.631, blue: 0.498))
                     .foregroundStyle(.white)
                     .clipShape(Capsule())
+            }
+            .alert(Text("Empty fields"), isPresented: $showAlert) {
+                
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
