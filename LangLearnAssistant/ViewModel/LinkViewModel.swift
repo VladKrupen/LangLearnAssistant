@@ -8,6 +8,6 @@
 import Foundation
 
 final class LinkViewModel: ObservableObject {
-    @Published var isShowAddLink = false
+    @Published var isShowAddLink: Bool = false
     @Published var openUrl: String = ""
 }

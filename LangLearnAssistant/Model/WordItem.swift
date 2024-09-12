@@ -14,7 +14,6 @@ final class WordItem: Object, ObjectKeyIdentifiable {
     @Persisted var mainWord: String = ""
     @Persisted var wordTranslate: String = ""
     @Persisted var wordDescription: String = ""
-    @Persisted var weight: Int = 0
     
     override class func primaryKey() -> String? {
         return "id"

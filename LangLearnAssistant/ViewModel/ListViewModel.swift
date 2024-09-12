@@ -8,5 +8,5 @@
 import Foundation
 
 final class ListViewModel: ObservableObject {
-    @Published var isShowAddView = false
+    @Published var isShowAddView: Bool = false
 }
