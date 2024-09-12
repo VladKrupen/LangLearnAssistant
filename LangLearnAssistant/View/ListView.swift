@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ListView: View {
-    
     @State var searchText = ""
     @EnvironmentObject var listViewModel: ListViewModel
     
@@ -30,18 +29,16 @@ struct ListView: View {
                     
                     
                     VStack(spacing: 20) {
-                        CardItem()
-                        CardItem()
-                        CardItem()
+                        CardItem() {
+                            
+                        }
                     }
                 }
                 .padding(.horizontal, 15)
             }
             
             Button {
-                withAnimation {
-                    listViewModel.isShowAddView.toggle()
-                }
+                listViewModel.isShowAddView.toggle()
             } label: {
                 ZStack {
                     Circle()
@@ -58,10 +55,16 @@ struct ListView: View {
     }
 }
 
+
 struct CardItem: View {
+    
+    @State var offsetX: CGFloat = 0
+    
+    var onDelete: () -> Void
     
     var body: some View {
         ZStack(alignment: .trailing) {
+            removeImage()
             VStack(alignment: .leading, spacing: 10) {
                 VStack(alignment: .leading, spacing: 0) {
                     Text("TR")
@@ -73,19 +76,54 @@ struct CardItem: View {
                     Text("Машина")
                         .font(.system(size: 18, weight: .light))
                 }
+                
+                
                 Divider()
                 VStack(alignment: .leading) {
                     Text("Примечание")
                         .font(.system(size: 12, weight: .black))
                         .foregroundStyle(Color(.systemGray))
-                    Text("аова алвао давыа ов давыолаовы")
+                    Text("car alfdfkd")
                 }
+                
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(20)
+            .background(Color(.systemGray5))
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .offset(x: offsetX)
+            .gesture(DragGesture()
+                .onChanged{ value in
+                    if value.translation.width < 0 {
+                        offsetX = value.translation.width
+                    }
+                }
+                .onEnded{ value in
+                    withAnimation {
+                        if screenSize().width * 0.7 < -value.translation.width {
+                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                            withAnimation {
+                                offsetX = -screenSize().width
+                                onDelete()
+                            }
+                        } else {
+                            offsetX = .zero
+                        }
+                    }
+                }
+            )
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(20)
-        .background(Color(.systemGray5))
-        .clipShape(RoundedRectangle(cornerRadius: 10))
+    }
+    
+    
+    func removeImage() -> some View {
+        return Image(systemName: "xmark")
+            .resizable()
+            .frame(width: 10, height: 10)
+            .offset(x: 30)
+            .offset(x: offsetX * 0.5)
+            .scaleEffect(CGSize(width: 0.1 * -offsetX * 0.08,
+                                height: 0.1 * -offsetX * 0.08))
     }
 }
 
