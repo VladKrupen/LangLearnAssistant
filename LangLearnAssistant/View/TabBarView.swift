@@ -23,6 +23,7 @@ struct TabBarView: View {
             TabView {
                 ListView()
                     .environmentObject(listViewModel)
+                    .padding(.horizontal, 15)
                     .tag(1)
                     .tabItem {
                         VStack {
@@ -31,6 +32,7 @@ struct TabBarView: View {
                         }
                     }
                 RandomWordView()
+                    .padding(.horizontal, 15)
                     .tag(2)
                     .tabItem {
                         VStack {
@@ -40,6 +42,7 @@ struct TabBarView: View {
                     }
                 LinksView()
                     .environmentObject(linkViewModel)
+                    .padding(.horizontal, 15)
                     .tag(3)
                     .tabItem {
                         VStack {

@@ -62,7 +62,6 @@ struct AddNewWordView: View {
                     .padding(.top, 23)
                     .padding(.leading, 23)
                 HStack {
-                    //UIText
                     TextEditor(text: $wordDescription)
                         .frame(height: 90)
                         .colorMultiply(Color(.systemGray6))

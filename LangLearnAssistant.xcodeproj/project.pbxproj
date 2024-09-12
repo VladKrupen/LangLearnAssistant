@@ -21,6 +21,8 @@
 		01A413292C92EAF400802420 /* View+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A413282C92EAF400802420 /* View+extension.swift */; };
 		01A4132C2C92EC9000802420 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 01A4132B2C92EC9000802420 /* RealmSwift */; };
 		01A4132F2C92ED1800802420 /* WordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A4132E2C92ED1800802420 /* WordItem.swift */; };
+		01A413312C92F65400802420 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A413302C92F65400802420 /* WebView.swift */; };
+		01A413332C92F67D00802420 /* LinkShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A413322C92F67D00802420 /* LinkShowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		01A413252C92C59100802420 /* LinkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkViewModel.swift; sourceTree = "<group>"; };
 		01A413282C92EAF400802420 /* View+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+extension.swift"; sourceTree = "<group>"; };
 		01A4132E2C92ED1800802420 /* WordItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordItem.swift; sourceTree = "<group>"; };
+		01A413302C92F65400802420 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		01A413322C92F67D00802420 /* LinkShowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkShowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,8 @@
 				01A303B32C91F97E00FF402C /* LinksView.swift */,
 				01A303B52C91FEA700FF402C /* AddNewWordView.swift */,
 				01A413232C92C57500802420 /* AddNewLinkView.swift */,
+				01A413302C92F65400802420 /* WebView.swift */,
+				01A413322C92F67D00802420 /* LinkShowView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -213,6 +219,8 @@
 				01A3039B2C91E21600FF402C /* LangLearnAssistantApp.swift in Sources */,
 				01A303B42C91F97E00FF402C /* LinksView.swift in Sources */,
 				01A303AC2C91E4DF00FF402C /* ListView.swift in Sources */,
+				01A413312C92F65400802420 /* WebView.swift in Sources */,
+				01A413332C92F67D00802420 /* LinkShowView.swift in Sources */,
 				01A303B22C91F59700FF402C /* RandomWordView.swift in Sources */,
 				01A4132F2C92ED1800802420 /* WordItem.swift in Sources */,
 			);

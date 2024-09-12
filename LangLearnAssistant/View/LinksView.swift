@@ -39,7 +39,6 @@ struct LinksView: View {
             .offset(x: -20, y: -30)
         }
         .frame(maxWidth: .infinity, alignment: .trailing)
-        .padding(.horizontal, 15)
     }
 }
 

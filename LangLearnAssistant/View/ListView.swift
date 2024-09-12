@@ -38,7 +38,6 @@ struct ListView: View {
                         }
                     }
                 }
-                .padding(.horizontal, 15)
             }
             
             Button {
