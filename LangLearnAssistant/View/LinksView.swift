@@ -14,33 +14,40 @@ struct LinksView: View {
     @ObservedResults(LinkItem.self) var linkItems
     
     var body: some View {
-        ZStack(alignment: Alignment(horizontal: .trailing, vertical: .bottom)) {
-            ScrollView {
-                VStack(spacing: 10) {
-                    ForEach(linkItems, id:\.id) { linkItem in
-                        CardLink(linkItem: linkItem) {
-                            $linkItems.remove(linkItem)
+        NavigationView {
+            ZStack(alignment: Alignment(horizontal: .trailing, vertical: .bottom)) {
+                ScrollView {
+                    VStack(spacing: 10) {
+                        ForEach(linkItems, id:\.id) { linkItem in
+                            NavigationLink {
+                                LinkShowView(url: linkItem.link)
+                            } label: {
+                                CardLink(linkItem: linkItem) {
+                                    $linkItems.remove(linkItem)
+                                }
+                            }
                         }
                     }
                 }
-            }
-            
-            Button {
-                linkViewModel.isShowAddLink.toggle()
-            } label: {
-                ZStack {
-                    Circle()
-                        .frame(width: 56)
-                        .foregroundStyle(Color(red: 0.314, green: 0.631, blue: 0.498))
-                    Image(systemName: "plus")
-                        .resizable()
-                        .frame(width: 20, height: 20)
-                        .foregroundStyle(Color(.white))
+                .navigationTitle("Links")
+                
+                Button {
+                    linkViewModel.isShowAddLink.toggle()
+                } label: {
+                    ZStack {
+                        Circle()
+                            .frame(width: 56)
+                            .foregroundStyle(Color(red: 0.314, green: 0.631, blue: 0.498))
+                        Image(systemName: "plus")
+                            .resizable()
+                            .frame(width: 20, height: 20)
+                            .foregroundStyle(Color(.white))
+                    }
                 }
+                .offset(x: -20, y: -30)
             }
-            .offset(x: -20, y: -30)
+            .frame(maxWidth: .infinity, alignment: .trailing)
         }
-        .frame(maxWidth: .infinity, alignment: .trailing)
     }
 }
 
@@ -57,6 +64,7 @@ struct CardLink: View {
                 Text(linkItem.linkName)
                     .font(.system(size: 14))
             }
+            .foregroundStyle(Color(.black))
             Spacer()
             Button {
                 onDelete()
@@ -69,10 +77,6 @@ struct CardLink: View {
         .padding(20)
         .background(Color(.systemGray5))
         .clipShape(RoundedRectangle(cornerRadius: 10))
-        .onTapGesture {
-            linkViewModel.isShowLinkContent.toggle()
-            linkViewModel.openUrl = linkItem.link
-        }
     }
 }
 
