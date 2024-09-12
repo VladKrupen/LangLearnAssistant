@@ -38,7 +38,7 @@ struct AddNewWordView: View {
             }
             
             VStack(alignment: .leading) {
-                Text("TR")
+                Text("EN")
                     .font(.system(size: 12, weight: .black))
                 
                 HStack {
@@ -76,7 +76,7 @@ struct AddNewWordView: View {
             
             Spacer()
             Button {
-                if newWord.isEmpty, wordTranslate.isEmpty {
+                if newWord.isEmpty || wordTranslate.isEmpty {
                     showAlert.toggle()
                 } else {
                     let wordItem = WordItem()

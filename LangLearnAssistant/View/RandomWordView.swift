@@ -17,7 +17,7 @@ struct RandomWordView: View {
                 Spacer()
                 VStack(spacing: 23) {
                     VStack(alignment: .leading) {
-                        Text("TR")
+                        Text("EN")
                             .font(.system(size: 12, weight: .black))
                             .padding(.bottom, 0)
                         Text("Araba")

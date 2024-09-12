@@ -11,7 +11,7 @@ import RealmSwift
 struct ListView: View {
     @State var searchText = ""
     @EnvironmentObject var listViewModel: ListViewModel
-    @ObservedResults(WordItem.self) var wordItems
+    @ObservedResults(WordItem.self, sortDescriptor: SortDescriptor(keyPath: "mainWord", ascending: true)) var wordItems
     
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .trailing, vertical: .bottom)) {
@@ -28,12 +28,14 @@ struct ListView: View {
                     .padding(.horizontal, 20)
                     .background(Color(.systemGray5))
                     .clipShape(RoundedRectangle(cornerRadius: 10))
-                    
+                    .searchable(text: $searchText, collection: $wordItems, keyPath: \.mainWord)
                     
                     VStack(spacing: 20) {
                         ForEach(wordItems, id: \.id) { item in
                             CardItem(cardItem: item) {
-                                $wordItems.remove(item)
+                                withAnimation {
+                                    $wordItems.remove(item)
+                                }
                             }
                         }
                     }
