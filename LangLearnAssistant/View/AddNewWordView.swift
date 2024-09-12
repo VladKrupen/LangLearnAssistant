@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct AddNewWordView: View {
     
@@ -14,6 +15,7 @@ struct AddNewWordView: View {
     @State var wordDescription = ""
     @State var showAlert: Bool = false
     @EnvironmentObject var listViewModel: ListViewModel
+    @ObservedResults(WordItem.self) var wordItems
     
     var body: some View {
         VStack {
@@ -60,6 +62,7 @@ struct AddNewWordView: View {
                     .padding(.top, 23)
                     .padding(.leading, 23)
                 HStack {
+                    //UIText
                     TextEditor(text: $wordDescription)
                         .frame(height: 90)
                         .colorMultiply(Color(.systemGray6))
@@ -74,7 +77,19 @@ struct AddNewWordView: View {
             
             Spacer()
             Button {
-               
+                if newWord.isEmpty, wordTranslate.isEmpty {
+                    showAlert.toggle()
+                } else {
+                    let wordItem = WordItem()
+                    wordItem.mainWord = newWord
+                    wordItem.wordDescription = wordDescription
+                    wordItem.wordTranslate = wordTranslate
+                    
+                    $wordItems.append(wordItem)
+                    withAnimation {
+                        listViewModel.isShowAddView.toggle()
+                    }
+                }
             } label: {
                 Text("Save")
                     .padding(.vertical, 13)

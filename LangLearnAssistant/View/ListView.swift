@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct ListView: View {
     @State var searchText = ""
     @EnvironmentObject var listViewModel: ListViewModel
+    @ObservedResults(WordItem.self) var wordItems
     
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .trailing, vertical: .bottom)) {
@@ -29,8 +31,10 @@ struct ListView: View {
                     
                     
                     VStack(spacing: 20) {
-                        CardItem() {
-                            
+                        ForEach(wordItems, id: \.id) { item in
+                            CardItem(cardItem: item) {
+                                $wordItems.remove(item)
+                            }
                         }
                     }
                 }
@@ -58,6 +62,8 @@ struct ListView: View {
 
 struct CardItem: View {
     
+    var cardItem: WordItem
+    
     @State var offsetX: CGFloat = 0
     
     var onDelete: () -> Void
@@ -67,25 +73,25 @@ struct CardItem: View {
             removeImage()
             VStack(alignment: .leading, spacing: 10) {
                 VStack(alignment: .leading, spacing: 0) {
-                    Text("TR")
+                    Text(cardItem.location)
                         .font(.system(size: 12, weight: .black))
                         .padding(.bottom, 5)
-                    Text("Car")
+                    Text(cardItem.mainWord)
                         .font(.system(size: 18, weight: .black))
                         .padding(.bottom, 4)
-                    Text("Машина")
+                    Text(cardItem.wordTranslate)
                         .font(.system(size: 18, weight: .light))
                 }
                 
-                
-                Divider()
-                VStack(alignment: .leading) {
-                    Text("Примечание")
-                        .font(.system(size: 12, weight: .black))
-                        .foregroundStyle(Color(.systemGray))
-                    Text("car alfdfkd")
+                if !cardItem.wordDescription.isEmpty {
+                    Divider()
+                    VStack(alignment: .leading) {
+                        Text("Примечание")
+                            .font(.system(size: 12, weight: .black))
+                            .foregroundStyle(Color(.systemGray))
+                        Text(cardItem.wordDescription)
+                    }
                 }
-                
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(20)
@@ -130,3 +136,4 @@ struct CardItem: View {
 #Preview {
     TabBarView()
 }
+
