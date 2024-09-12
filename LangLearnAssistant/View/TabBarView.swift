@@ -10,6 +10,7 @@ import SwiftUI
 struct TabBarView: View {
     
     @ObservedObject var listViewModel = ListViewModel()
+    @ObservedObject var linkViewModel = LinkViewModel()
     
     init() {
         UITabBar.appearance().shadowImage = UIImage()
@@ -17,7 +18,6 @@ struct TabBarView: View {
         UITabBar.appearance().backgroundColor = UIColor.white
     }
 
-    
     var body: some View {
         ZStack {
             TabView {
@@ -39,6 +39,7 @@ struct TabBarView: View {
                         }
                     }
                 LinksView()
+                    .environmentObject(linkViewModel)
                     .tag(3)
                     .tabItem {
                         VStack {
@@ -51,6 +52,10 @@ struct TabBarView: View {
             if listViewModel.isShowAddView {
                 AddNewWordView()
                     .environmentObject(listViewModel)
+            }
+            if linkViewModel.isShowAddLink {
+                AddNewLinkView()
+                    .environmentObject(linkViewModel)
             }
         }
     }

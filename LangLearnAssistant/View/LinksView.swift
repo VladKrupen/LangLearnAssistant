@@ -9,6 +9,8 @@ import SwiftUI
 
 struct LinksView: View {
     
+    @EnvironmentObject var linkViewModel: LinkViewModel
+    
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .trailing, vertical: .bottom)) {
             ScrollView {
@@ -20,7 +22,9 @@ struct LinksView: View {
             }
             
             Button {
-                
+                withAnimation {
+                    linkViewModel.isShowAddLink.toggle()
+                }
             } label: {
                 ZStack {
                     Circle()
